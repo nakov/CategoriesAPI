@@ -1,0 +1,10 @@
+{
+    "name": "memes-api",
+    "version": "1.0.0",
+    "description": "Meme Lounge RESTfulAPI",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+    }
+}
