@@ -1526,7 +1526,7 @@
   server.listen(port);
   let url = `http://localhost:${port}/`;
   if (process.env["CODESPACE_NAME"])
-    url = `https://${process.env["CODESPACE_NAME"]}-${port}.githubpreview.dev`;
+    url = `https://${process.env["CODESPACE_NAME"]}-${port}.preview.app.github.dev`;
 
   console.log(
     `Server started on port ${port}. You can make requests to ${url}/`
