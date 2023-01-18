@@ -85,12 +85,12 @@
       console.info(`<< ${req.method} ${req.url}`);
 
       // Redirect fix for admin panel relative paths
-      if (req.url.slice(-6) == "/admin") {
-        res.writeHead(302, {
-          Location: `http://${req.headers.host}/admin/`,
-        });
-        return res.end();
-      }
+      //if (req.url.slice(-6) == "/admin") {
+      //  res.writeHead(302, {
+      //    Location: `/admin/`,
+      //  });
+      //  return res.end();
+      //}
 
       let status = 200;
       let headers = {
@@ -187,10 +187,10 @@
   }
 
   function composeErrorObject(code, message) {
-    return JSON.stringify({
+    return {
       code,
-      message,
-    });
+      message
+    };
   }
 
   async function parseRequest(req) {
@@ -1522,7 +1522,7 @@
     requestHandler(plugins, services)
   );
 
-  const port = 3030;
+  const port = 8080;
   server.listen(port);
   console.log(
     `Server started on port ${port}. You can make requests to http://localhost:${port}/`
