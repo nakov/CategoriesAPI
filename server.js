@@ -1529,7 +1529,7 @@
     url = `https://${process.env["CODESPACE_NAME"]}-${port}.preview.app.github.dev`;
 
   console.log(
-    `Server started on port ${port}. You can make requests to ${url}/`
+    `Server started. You can make requests to ${url}/`
   );
   console.log(`Admin panel located at ${url}/admin`);
 
