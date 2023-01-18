@@ -1524,10 +1524,14 @@
 
   const port = 8080;
   server.listen(port);
+  let url = `http://localhost:${port}/`;
+  if (process.env["CODESPACE_NAME"])
+    url = `https://${process.env["CODESPACE_NAME"]}-${port}.githubpreview.dev`;
+
   console.log(
-    `Server started on port ${port}. You can make requests to http://localhost:${port}/`
+    `Server started on port ${port}. You can make requests to ${url}/`
   );
-  console.log(`Admin panel located at http://localhost:${port}/admin`);
+  console.log(`Admin panel located at ${url}/admin`);
 
   var softuniPracticeServer = {};
 
