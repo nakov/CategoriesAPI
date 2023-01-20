@@ -1524,7 +1524,7 @@
 
   const port = 8080;
   server.listen(port);
-  let url = `http://localhost:${port}/`;
+  let url = `http://localhost:${port}`;
   if (process.env["CODESPACE_NAME"])
     url = `https://${process.env["CODESPACE_NAME"]}-${port}.preview.app.github.dev`;
 
