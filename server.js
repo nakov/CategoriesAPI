@@ -135,6 +135,8 @@
       ) {
         await new Promise((r) => setTimeout(r, 500 + Math.random() * 500));
       }
+      if (typeof(result) != "string")
+        result = JSON.stringify(result);
       res.end(result);
 
       function processPlugins() {
@@ -164,12 +166,16 @@
         const service = services[serviceName];
 
         if (service === undefined) {
-          status = 400;
-          result = composeErrorObject(
-            400,
-            `Service "${serviceName}" is not supported`
-          );
-          console.error("Missing service " + serviceName);
+          // status = 400;
+          // result = composeErrorObject(
+          //   400,
+          //   `Service "${serviceName}" is not supported`
+          // );
+          // console.error("Missing service " + serviceName);
+          res.writeHead(302, {
+            Location: `/admin/`,
+          });
+          return res.end();
         } else {
           result = await service(context, { method, tokens, query, body });
         }
@@ -1494,6 +1500,12 @@
         _createdOn: 1616577827124,
         _id: "03795138-168c-4c88-a943-118875ad6042",
       },
+    ],
+    categories: [
+      {slug: 'general', name: 'General Category'},
+      {slug: 'fun', name: 'Fun Stories Category'},
+      {slug: 'sport', name: 'Sport Category'},
+      {slug: 'fashion', name: 'Fashion Category'},
     ],
   };
   var rules$1 = {
