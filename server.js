@@ -147,7 +147,14 @@
 
       async function handle(context) {
         const { serviceName, tokens, query, body } = await parseRequest(req);
-        if (serviceName == "admin") {
+        
+        if (serviceName == undefined) {
+          // Redirect the home page to "/admin"
+          res.writeHead(302, {
+            Location: `/admin/`,
+          });
+          return res.end();
+        } else if (serviceName == "admin") {
           return ({ headers, result } = services["admin"](
             method,
             tokens,
@@ -166,16 +173,12 @@
         const service = services[serviceName];
 
         if (service === undefined) {
-          // status = 400;
-          // result = composeErrorObject(
-          //   400,
-          //   `Service "${serviceName}" is not supported`
-          // );
-          // console.error("Missing service " + serviceName);
-          res.writeHead(302, {
-            Location: `/admin/`,
-          });
-          return res.end();
+          status = 400;
+          result = composeErrorObject(
+            400,
+            `Service "${serviceName}" is not supported`
+          );
+          console.error("Missing service " + serviceName);
         } else {
           result = await service(context, { method, tokens, query, body });
         }
