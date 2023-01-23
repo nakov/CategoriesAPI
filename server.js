@@ -1231,6 +1231,9 @@
           const session = findSessionByUserId(context.user._id);
           if (session !== undefined) {
             context.protectedStorage.delete("sessions", session._id);
+            return {
+              msg: "Logout successful"              
+            }
           }
         } else {
           throw new CredentialError$1("User session does not exist");
